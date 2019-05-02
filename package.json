@@ -1,0 +1,35 @@
+{
+  "name": "bucket-api",
+  "version": "1.0.0",
+  "description": "Api for BucketList IOS",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "tslint \"src/**/*.ts\" --project tsconfig.json",
+    "dev": "npm run build-ts && TYPE=dev node ./dist/index.js",
+    "mocks": "npm run build-ts && TYPE=mocks npm run watch",
+    "build-ts": "tsc",
+    "start": "node ./dist/index.js",
+    "watch-node": "nodemon ./dist/index.js",
+    "watch-ts": "tsc -w",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\"  \"npm run watch-ts\" \"npm run watch-node\""
+  },
+  "author": "v.tarasov@corp.mail.ru",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "inversify-express-utils": "^6.3.2",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/mongoose": "^5.3.27",
+    "@types/morgan": "^1.7.35",
+    "inversify": "^5.0.1",
+    "mongoose": "^5.5.4",
+    "reflect-metadata": "^0.1.13"
+  }
+}

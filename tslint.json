@@ -1,0 +1,50 @@
+{
+    "defaultSeverity": "error",
+    "jsRules": {},
+    "rules": {
+        "typedef": [
+            true,
+            "arrow-call-signature",
+            "arrow-parameter",
+            "property-declaration",
+            "member-variable-declaration",
+            "object-destructuring"
+        ],
+        "only-arrow-functions": false,
+        "static-this": true,
+        "curly": true,
+        "no-arg": true,
+        "switch-default": true,
+        "cyclomatic-complexity": [true, 15],
+        "object-literal-sort-keys": true,
+        "await-promise": true,
+        "member-ordering": [
+            true,
+            {
+                "order": "fields-first"
+            }
+        ],
+        "promise-function-async": true,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": {
+                    "objects": "always",
+                    "arrays": "always",
+                    "functions": "always",
+                    "typeLiterals": "always"
+                },
+                "esSpecCompliant": true
+            }
+        ],
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "newline-before-return": true,
+        "unnecessary-bind": true,
+        "class-name": true,
+        "arrow-return-shorthand": true
+    },
+    "rulesDirectory": []
+}

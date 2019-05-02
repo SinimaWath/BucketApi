@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "port": 3000,
+    "morganMode": "tiny",
+    "logger": "console"
+  },
+  "default": {
+    "port": 3000
+  }
+}
