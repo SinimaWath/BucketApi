@@ -26,9 +26,11 @@
   },
   "dependencies": {
     "@types/express": "^4.16.1",
+    "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.3.27",
     "@types/morgan": "^1.7.35",
     "inversify": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.4",
     "reflect-metadata": "^0.1.13"
   }

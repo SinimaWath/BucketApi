@@ -4,11 +4,14 @@ import {Container} from 'inversify';
 import {initLogger, initServer, initServices} from './init';
 import {TYPES} from './contsants/types';
 import {ILogger} from './utils/ILogger';
+import {ContainerStorage} from './storages/container/container';
 
 let container = new Container();
+ContainerStorage.container = container;
 
 const config = getConfig(process.env.TYPE as TMode);
 initLogger(container, config);
+
 container.get<ILogger>(TYPES.Logger).log('Config:', config);
 
 initServices(container, config);
