@@ -1,4 +1,5 @@
 import config from './config.json';
+// @ts-ignore
 import secretKey from './secretKey.json';
 import {TPrivateKeyJWT} from '../utils/IJWT';
 
@@ -32,6 +33,10 @@ export enum EModes {
 }
 
 export default function getConfig (mode: TMode): IConfig {
+    if (!secretKey || !secretKey.privateKey) {
+        throw 'There is no private Key. Generate it: npm run genereate-jwt-key';
+    }
+
     if (!mode) {
         console.warn('Sorry there is no type for config');
 
@@ -43,7 +48,7 @@ export default function getConfig (mode: TMode): IConfig {
         case EModes.DEV:
             const configDev = config.dev as IConfig;
             configDev.mode = mode;
-            configDev.privateKey = (secretKey as any).privateKey || (secretKey as any).default;
+            configDev.privateKey = (secretKey as any).privateKey;
 
             return configDev;
         default:

@@ -8,7 +8,7 @@
     "lint-fix": "tslint \"src/**/*.ts\" --project tsconfig.json --fix",
     "dev": "npm run build-ts && TYPE=dev node ./dist/index.js",
     "mocks": "npm run build-ts && TYPE=mocks npm run watch",
-    "build-ts": "tsc",
+    "build-ts": "rm -rf dist/ && tsc",
     "genereate-jwt-key": "node ./src/config/secretKey.js",
     "start": "node ./dist/index.js",
     "generate-doc": "apidoc -e \"(node_modules|public)\" -o public/apidoc ",
