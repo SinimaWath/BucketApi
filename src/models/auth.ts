@@ -1,9 +1,9 @@
 import {IModel, Model, TFieldError, TModelCreate} from './model';
 import bcrypt from 'bcrypt';
-import {errorify, resultify} from '../utils/service';
 import {TYPES} from '../di/types';
 import {IConfig} from '../config/config';
 import {AppContainer} from '../di/bootstrap';
+import {errorify, resultify} from '../utils/action';
 
 export interface IAuthData {
     email: string;

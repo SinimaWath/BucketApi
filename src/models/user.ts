@@ -1,5 +1,5 @@
-import {resultify} from '../utils/service';
 import {IModel, Model, TFieldError, TModelCreate} from './model';
+import {resultify} from '../utils/action';
 
 export interface IUserData {
     age: number;

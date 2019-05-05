@@ -1,4 +1,4 @@
-import {IError} from '../utils/errors';
+import {IError} from '../utils/action';
 
 export interface IErrorResponse extends IError<string>{
     data?: any;

@@ -1,7 +1,7 @@
 import {injectable} from 'inversify';
 import {IUserService, TCreateUser, TGetUser} from './interfaces';
 import {IUserData} from '../../models/user';
-import {errorify, resultify} from '../../utils/service';
+import {errorify, resultify} from '../../utils/action';
 import {BaseUserService} from './userServiceBase';
 import {TCreateAuthToken} from '../authService/interfaces';
 import {IAuthData} from '../../models/auth';

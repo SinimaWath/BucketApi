@@ -10,10 +10,10 @@ import {
 import {inject} from 'inversify';
 import {TYPES} from '../di/types';
 import {IAuthService, TCreateAuthToken, TRemoveAuthToken} from '../services/authService/interfaces';
-import {errorify} from '../utils/service';
 import {createError, EErrors} from './errors';
 import {IAuthData} from '../models/auth';
 import {EAuthServiceError} from '../services/authService/errors';
+import {errorify} from '../utils/action';
 
 @controller('/session')
 export class SessionController extends BaseHttpController {

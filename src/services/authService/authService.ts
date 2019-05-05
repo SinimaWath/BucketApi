@@ -12,7 +12,7 @@ import {TYPES} from '../../di/types';
 import {ILogger} from '../../utils/ILogger';
 import {IJWT} from '../../utils/IJWT';
 import {BaseAuthService} from './authServiceBase';
-import {errorify, resultify} from '../../utils/service';
+import {errorify, resultify} from '../../utils/action';
 import {EAuthServiceError} from './errors';
 import {TGetUser} from '../userService/interfaces';
 import {EErrors} from '../../controllers/errors';

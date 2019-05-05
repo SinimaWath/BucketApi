@@ -1,5 +1,4 @@
-import {IError} from '../utils/errors';
-import {IResult} from '../utils/service';
+import {IError, TAction} from '../utils/action';
 
 export interface IModel<T> {
     validate (): T;
@@ -24,7 +23,7 @@ export type TFieldError<T> = IError<EValidationError> & {errorField: TValidation
  * T - Класс модели
  * Y - Интерфейс данных
  */
-export type TModelCreate<T, Y> = Partial<IResult<T> & TFieldError<Y>>;
+export type TModelCreate<T, Y> = TAction<T, TFieldError<Y>>;
 
 export function createNotExistErr<T> (errorField: TValidationField<T>): TFieldError<T> {
     return {errorField, error: EValidationError.NOT_EXIST};

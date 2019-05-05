@@ -1,7 +1,7 @@
 import {IUserStorage, TUserStorageGet, TUserStorageInsert, TUserStorageUpdate} from './interfaces';
 import {inject, injectable} from 'inversify';
 import {EErrors} from '../../controllers/errors';
-import {errorify, resultify} from '../../utils/service';
+import {errorify, resultify} from '../../utils/action';
 import {IUserFullData} from '../../models/userfull';
 import {EStorageError} from './errors';
 import {TYPES} from '../../di/types';

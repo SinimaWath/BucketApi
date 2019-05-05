@@ -1,5 +1,4 @@
-import {IError} from '../../utils/errors';
-import {TAction} from '../../utils/service';
+import {IError, TAction} from '../../utils/action';
 import {IUserFullData} from '../../models/userfull';
 
 export type IStorageError = IError<string>;

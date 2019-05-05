@@ -4,7 +4,7 @@ import {inject, injectable} from 'inversify';
 import {TYPES} from '../../di/types';
 import {IAuthService, TCheckAuthToken, TCheckTokenTruth} from './interfaces';
 import {AuthPrincipal} from './authPrincipal';
-import {errorify} from '../../utils/service';
+import {errorify} from '../../utils/action';
 import {EAuthServiceError} from './errors';
 import AuthProvider = interfaces.AuthProvider;
 

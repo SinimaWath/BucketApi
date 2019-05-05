@@ -1,7 +1,7 @@
 import {interfaces} from 'inversify-express-utils';
 import {injectable} from 'inversify';
-import {IError} from '../../utils/errors';
 import {IJWTData} from './interfaces';
+import {IError} from '../../utils/action';
 
 @injectable()
 export class AuthPrincipal implements interfaces.Principal {

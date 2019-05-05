@@ -1,6 +1,5 @@
 import {IJWT} from '../../utils/IJWT';
-import {IError} from '../../utils/errors';
-import {TAction} from '../../utils/service';
+import {IError, TAction} from '../../utils/action';
 import {IAuthData, TAuthValidationError} from '../../models/auth';
 
 export interface IJWTData {

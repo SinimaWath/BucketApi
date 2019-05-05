@@ -1,10 +1,10 @@
 import {IUserData, User} from './user';
 import {AuthModel, IAuthData} from './auth';
 import {TFieldError, TModelCreate} from './model';
-import {resultify} from '../utils/service';
 import {AppContainer} from '../di/bootstrap';
 import {ILogger} from '../utils/ILogger';
 import {TYPES} from '../di/types';
+import {resultify} from '../utils/action';
 
 export type IUserFullData = IUserData & IAuthData;
 export type TUserFullValidationError = TFieldError<IUserFullData> | null;

@@ -1,7 +1,6 @@
 import {IUser, IUserData} from '../../models/user';
-import {IError} from '../../utils/errors';
 import {IJWT} from '../../utils/IJWT';
-import {IResult, TAction} from '../../utils/service';
+import {IError, IResult, TAction} from '../../utils/action';
 import {IAuthData} from '../../models/auth';
 import {IUserFullData, TUserFullValidationError} from '../../models/userfull';
 
