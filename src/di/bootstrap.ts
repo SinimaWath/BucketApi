@@ -47,7 +47,9 @@ function initThirdParty(container: Container): void {
 function initMiddleware(container: Container,config: IConfig): void {
     container.bind<express.RequestHandler>(TYPES.Morgan).toConstantValue(morgan(config.morganMode));
     container.bind<express.RequestHandler>(TYPES.JSON).toConstantValue(express.json());
+    container.bind<express.RequestHandler>(TYPES.Static).toConstantValue(express.static('public'));
     container.bind<express.ErrorRequestHandler>(TYPES.Catch).toConstantValue(catchMiddleware);
+
 }
 
 function initLogger(container: Container, config: IConfig): void {

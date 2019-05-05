@@ -4,7 +4,7 @@
     "morganMode": "tiny",
     "logger": "console",
     "jwt": {
-      "exp": 3600,
+      "exp": 3600
     },
     "passwordHashRound": 5
   },

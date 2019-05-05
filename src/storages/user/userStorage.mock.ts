@@ -15,7 +15,7 @@ export class MockUserStorage implements IUserStorage {
     @inject(TYPES.Logger) protected readonly _logger: ILogger;
 
     findOneById(id: string): Promise<TUserStorageGet> {
-        const user = storage[parseInt(id, 10) - 1];
+        const user = storage[parseInt(id, 10)];
 
         if (!user) {
             return Promise.resolve(errorify(EErrors.NOT_FOUND));
@@ -25,8 +25,8 @@ export class MockUserStorage implements IUserStorage {
     }
 
     insert(model: IUserFullData): Promise<TUserStorageInsert> {
-        const id = storage.push(model);
-        model._id = id.toString();
+        model._id = storage.length.toString();
+        storage.push(model);
 
         this._logger.log('insert: ', model);
 

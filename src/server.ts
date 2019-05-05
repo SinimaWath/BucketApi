@@ -18,11 +18,12 @@ export function build(container: Container, config: IConfig) {
 
     server.setConfig(function (app) {
         setEnv(app, config);
+        app.use(container.get(TYPES.Static));
         app.use(container.get(TYPES.JSON));
     });
 
     server.setErrorConfig(function (app) {
-       app.use(container.get(TYPES.Catch))
+       app.use(container.get(TYPES.Catch));
     });
 
     return server.build();

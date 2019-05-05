@@ -17,6 +17,7 @@ const MIDDLEWARE = {
     Catch: Symbol.for('Catch'),
     JSON: Symbol.for('JSON'),
     Morgan: Symbol.for('Morgan'),
+    Static: Symbol.for('Static'),
 };
 
 const PROVIDERS = {
