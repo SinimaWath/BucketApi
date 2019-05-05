@@ -43,7 +43,7 @@ export default function getConfig (mode: TMode): IConfig {
         case EModes.DEV:
             const configDev = config.dev as IConfig;
             configDev.mode = mode;
-            configDev.privateKey = (secretKey as any).key;
+            configDev.privateKey = (secretKey as any).privateKey || (secretKey as any).default;
 
             return configDev;
         default:
@@ -52,3 +52,5 @@ export default function getConfig (mode: TMode): IConfig {
             return {...config.default, mode};
     }
 }
+
+
