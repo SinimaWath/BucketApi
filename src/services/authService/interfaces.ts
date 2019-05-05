@@ -19,38 +19,38 @@ export interface IAuthService {
      * Создает сессию
      * @param authData
      */
-    create(authData: IAuthData): Promise<TCreateAuthToken>;
+    create (authData: IAuthData): Promise<TCreateAuthToken>;
 
     /**
      * Создает Токен сессии
      * @param jwtData
      */
-    createToken(jwtData: IJWTData): Promise<TCreateAuthToken>;
+    createToken (jwtData: IJWTData): Promise<TCreateAuthToken>;
 
     /**
      * Проверяет авторизационные данные
      * @param authData
      */
-    checkCredentials(authData: IAuthData): Promise<TCheckCredentials>;
+    checkCredentials (authData: IAuthData): Promise<TCheckCredentials>;
 
 
     /**
      * Проверяет токен на валидность
      * @param jwt
      */
-    checkAndDecode(jwt: IJWT): Promise<TCheckAuthToken>;
+    checkAndDecode (jwt: IJWT): Promise<TCheckAuthToken>;
 
 
     /**
      * Проверяем настоящий ли это токен пользователя или нет
      * @param jwtData
      */
-    checkTokenTruth(jwtData: IJWTData & IJWT): Promise<TCheckTokenTruth>;
+    checkTokenTruth (jwtData: IJWTData & IJWT): Promise<TCheckTokenTruth>;
 
 
     /**
      * Удаляет сессию
      * @param jwt
      */
-    remove(jwt: IJWT): Promise<TRemoveAuthToken>;
+    remove (jwt: IJWT): Promise<TRemoveAuthToken>;
 }

@@ -1,5 +1,5 @@
 import {resultify} from '../utils/service';
-import {createNotExistErr, IModel, TFieldError, TModelCreate} from './model';
+import {IModel, Model, TFieldError, TModelCreate} from './model';
 
 export interface IUserData {
     age: number;
@@ -16,15 +16,17 @@ export type TUserErrorField = TFieldError<IUserData>;
 
 export type TUserValidationError = TUserErrorField | null;
 
-export class User implements IUser{
+export class User extends Model<IUserData, null> implements IUser{
 
-    constructor(
+    constructor (
         public readonly age: number,
         public readonly country: string,
         public _id?: string,
-    ) {}
+    ) {
+        super(['age', 'country']);
+    }
 
-    public static async create(user: IUserData): Promise<TCreateUserModel> {
+    public static async create (user: IUserData): Promise<TCreateUserModel> {
         let created = new User(user.age, user.country, user._id);
 
         const error = created.validate();
@@ -33,27 +35,5 @@ export class User implements IUser{
         }
 
         return resultify(created);
-    }
-
-    validate(): TUserValidationError {
-        const err = this.checkRequire();
-        if (err !== null) {
-            return err;
-        }
-
-        return null;
-    }
-
-    checkRequire(): TUserValidationError {
-        if (!this.age) {
-            return createNotExistErr('age')
-        }
-
-        if (!this.country) {
-            return createNotExistErr('country')
-        }
-
-        return null;
-
     }
 }

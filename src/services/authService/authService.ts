@@ -1,7 +1,9 @@
 import {
     IAuthService,
     IJWTData,
-    TCheckAuthToken, TCheckCredentials, TCheckTokenTruth,
+    TCheckAuthToken,
+    TCheckCredentials,
+    TCheckTokenTruth,
     TCreateAuthToken,
     TRemoveAuthToken
 } from './interfaces';
@@ -22,7 +24,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
     @inject(TYPES.Logger) private readonly _logger: ILogger;
     @inject(TYPES.UserStorage) private readonly _storage: IUserStorage;
 
-    public async create(authData: IAuthData): Promise<TCreateAuthToken> {
+    public async create (authData: IAuthData): Promise<TCreateAuthToken> {
         const {
             result: authModel,
             error: authModelError,
@@ -66,7 +68,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
         return resultify(tokenResult);
     }
 
-    public checkAndDecode(token: IJWT): Promise<TCheckAuthToken> {
+    public checkAndDecode (token: IJWT): Promise<TCheckAuthToken> {
         return new Promise((resolve: any): void => (
             void this._jwt.verify(token.jwt, this._secretKey,
                 (err: Error, encode: object) => {
@@ -81,7 +83,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
         ));
     }
 
-    public async createToken(authData: IJWTData): Promise<TCreateAuthToken> {
+    public async createToken (authData: IJWTData): Promise<TCreateAuthToken> {
         return new Promise((resolve: any, reject: any): void => (
             void this._jwt.sign(authData, this._secretKey, {
                 expiresIn: this._config.jwt.exp,
@@ -95,7 +97,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
         ));
     }
 
-    async checkCredentials(authData: IAuthData): Promise<TCheckCredentials> {
+    async checkCredentials (authData: IAuthData): Promise<TCheckCredentials> {
         const {result, error}: TUserStorageGet = await this._storage.findOneByEmail(authData.email);
         if (error) {
             this._logger.log('CheckCredentials: ', error);
@@ -113,7 +115,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
         return {};
     }
 
-    public async checkTokenTruth(jwtData: IJWTData & IJWT): Promise<TCheckTokenTruth> {
+    public async checkTokenTruth (jwtData: IJWTData & IJWT): Promise<TCheckTokenTruth> {
         const {result, error}: TUserStorageGet = await this._storage.findOneByEmail(jwtData.email);
 
         if (error) {
@@ -131,7 +133,7 @@ export class AuthService extends BaseAuthService implements IAuthService{
         return {};
     }
 
-    public async remove(jwt: IJWT): Promise<TRemoveAuthToken> {
+    public async remove (jwt: IJWT): Promise<TRemoveAuthToken> {
         const {result, error = null}: TCheckAuthToken = await this.checkAndDecode(jwt);
         if (error) {
             return errorify(error);

@@ -45,7 +45,8 @@
         "unnecessary-bind": true,
         "class-name": true,
         "arrow-return-shorthand": true,
-        "semicolon": [true, "always"]
+        "semicolon": [true, "always"],
+        "space-before-function-paren": true
     },
     "rulesDirectory": []
 }

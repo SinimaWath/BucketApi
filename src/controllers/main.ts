@@ -7,7 +7,7 @@ export class Main extends BaseHttpController {
      * @apiGroup Root
      */
     @httpGet('/')
-    public get() {
+    public get () {
         return this.ok('Hello world');
     }
 }

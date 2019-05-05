@@ -1,4 +1,4 @@
-import {IStorageError, IUserStorage, TUserStorageGet, TUserStorageInsert, TUserStorageUpdate} from './interfaces';
+import {IUserStorage, TUserStorageGet, TUserStorageInsert, TUserStorageUpdate} from './interfaces';
 import {inject, injectable} from 'inversify';
 import {EErrors} from '../../controllers/errors';
 import {errorify, resultify} from '../../utils/service';
@@ -14,7 +14,7 @@ let storage: Array<IUserFullData> = [];
 export class MockUserStorage implements IUserStorage {
     @inject(TYPES.Logger) protected readonly _logger: ILogger;
 
-    findOneById(id: string): Promise<TUserStorageGet> {
+    findOneById (id: string): Promise<TUserStorageGet> {
         const user = storage[parseInt(id, 10)];
 
         if (!user) {
@@ -24,7 +24,7 @@ export class MockUserStorage implements IUserStorage {
         return Promise.resolve(resultify(user));
     }
 
-    insert(model: IUserFullData): Promise<TUserStorageInsert> {
+    insert (model: IUserFullData): Promise<TUserStorageInsert> {
         model._id = storage.length.toString();
         storage.push(model);
 
@@ -33,7 +33,7 @@ export class MockUserStorage implements IUserStorage {
         return Promise.resolve(resultify(model));
     }
 
-    updateByEmail(email: string, model: Partial<IUserFullData>): Promise<TUserStorageUpdate> {
+    updateByEmail (email: string, model: Partial<IUserFullData>): Promise<TUserStorageUpdate> {
         this._logger.log(storage);
         const id = storage.findIndex((user: IUserFullData) => user.email === email);
         if (id === -1) {
@@ -69,7 +69,7 @@ export class MockUserStorage implements IUserStorage {
         return Promise.resolve(resultify({...toUpdate}));
     }
 
-    findOneByEmail(email: string): Promise<TUserStorageGet> {
+    findOneByEmail (email: string): Promise<TUserStorageGet> {
         const id = storage.findIndex((user: IUserFullData) => user.email === email);
         if (id === -1) {
             return Promise.resolve(errorify(EStorageError.NOT_FOUND));

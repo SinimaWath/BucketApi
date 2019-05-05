@@ -4,13 +4,13 @@ export interface IErrorResponse extends IError<string>{
     data?: any;
 }
 
-export function createSimpleError(error: string): IErrorResponse {
+export function createSimpleError (error: string): IErrorResponse {
     return {
         error,
     };
 }
 
-export function createError(error: string, data: any): IErrorResponse {
+export function createError (error: string, data: any): IErrorResponse {
     return {
         data,
         error,

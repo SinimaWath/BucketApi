@@ -1,17 +1,9 @@
-import {
-    BaseHttpController,
-    controller,
-    httpGet,
-    httpPost,
-    requestParam,
-    results
-} from 'inversify-express-utils';
+import {BaseHttpController, controller, httpGet, httpPost, requestParam, results} from 'inversify-express-utils';
 import {inject} from 'inversify';
 import {TYPES} from '../di/types';
 import {IUserService, TCreateUser, TGetUser} from '../services/userService/interfaces';
 import {ILogger} from '../utils/ILogger';
 import {createError, createSimpleError, EErrors} from './errors';
-import {errorify} from '../utils/service';
 
 const userService = inject(TYPES.UserService);
 const logger = inject(TYPES.Logger);
@@ -37,7 +29,7 @@ export class ProfileController extends BaseHttpController {
      *  }
      */
     @httpGet('/:id', TYPES.Morgan)
-    public async get(@requestParam('id') id: string): Promise<results.JsonResult> {
+    public async get (@requestParam('id') id: string): Promise<results.JsonResult> {
         const {result, error}: TGetUser = await this._userService.get(id);
 
         this._logger.log(result, error);
@@ -78,7 +70,7 @@ export class ProfileController extends BaseHttpController {
      *
      */
     @httpPost('/', TYPES.Morgan)
-    public async create(): Promise<results.JsonResult> {
+    public async create (): Promise<results.JsonResult> {
         const {
             result = null,
             errorField = null,

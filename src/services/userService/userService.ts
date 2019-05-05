@@ -1,20 +1,20 @@
 import {injectable} from 'inversify';
-import {IUserService, TCreateUser, TGetUser, TGetUsers} from './interfaces';
-import {IUser, IUserData, TCreateUserModel, User} from '../../models/user';
+import {IUserService, TCreateUser, TGetUser} from './interfaces';
+import {IUserData} from '../../models/user';
 import {errorify, resultify} from '../../utils/service';
 import {BaseUserService} from './userServiceBase';
 import {TCreateAuthToken} from '../authService/interfaces';
-import {AuthModel, IAuthData, TCreateAuthModel} from '../../models/auth';
+import {IAuthData} from '../../models/auth';
 import {createFullUser, TCreateFullUser} from '../../models/userfull';
 import {TUserStorageInsert} from '../../storages/user/interfaces';
 
 @injectable()
 export class UserService extends BaseUserService implements IUserService  {
-    async get(id: string): Promise<TGetUser> {
+    async get (id: string): Promise<TGetUser> {
         return await this._userStorage.findOneById(id);
     }
 
-    async create(data: IUserData & IAuthData): Promise<TCreateUser> {
+    async create (data: IUserData & IAuthData): Promise<TCreateUser> {
         const {
             result: fullModel,
             error,

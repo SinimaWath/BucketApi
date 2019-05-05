@@ -1,4 +1,4 @@
-import {IUserData, TUserErrorField, User} from './user';
+import {IUserData, User} from './user';
 import {AuthModel, IAuthData} from './auth';
 import {TFieldError, TModelCreate} from './model';
 import {resultify} from '../utils/service';
@@ -11,7 +11,7 @@ export type TUserFullValidationError = TFieldError<IUserFullData> | null;
 export type TCreateFullUser = TModelCreate<IUserFullData, IUserFullData>;
 
 
-export async function createFullUser(data: IUserFullData): Promise<TCreateFullUser> {
+export async function createFullUser (data: IUserFullData): Promise<TCreateFullUser> {
     const [userModel, authModel] = await Promise.all([User.create(data), AuthModel.create(data)]);
 
     const logger = AppContainer.get<ILogger>(TYPES.Logger);

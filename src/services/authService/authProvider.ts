@@ -5,8 +5,8 @@ import {TYPES} from '../../di/types';
 import {IAuthService, TCheckAuthToken, TCheckTokenTruth} from './interfaces';
 import {AuthPrincipal} from './authPrincipal';
 import {errorify} from '../../utils/service';
-import AuthProvider = interfaces.AuthProvider;
 import {EAuthServiceError} from './errors';
+import AuthProvider = interfaces.AuthProvider;
 
 export interface IAuthProviderConstructor {
     new (): AuthProvider;
@@ -16,7 +16,7 @@ export interface IAuthProviderConstructor {
 export class UserAuthProvider implements interfaces.AuthProvider {
     @inject(TYPES.AuthService) protected readonly _authService: IAuthService;
 
-    public async getUser(
+    public async getUser (
         req: express.Request,
         res: express.Response,
         next: express.NextFunction,

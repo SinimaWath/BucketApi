@@ -9,7 +9,7 @@ import {
 } from 'inversify-express-utils';
 import {inject} from 'inversify';
 import {TYPES} from '../di/types';
-import {IAuthService, TCheckAuthToken, TCreateAuthToken, TRemoveAuthToken} from '../services/authService/interfaces';
+import {IAuthService, TCreateAuthToken, TRemoveAuthToken} from '../services/authService/interfaces';
 import {errorify} from '../utils/service';
 import {createError, EErrors} from './errors';
 import {IAuthData} from '../models/auth';
@@ -47,7 +47,7 @@ export class SessionController extends BaseHttpController {
      *
      */
     @httpPost('/', TYPES.Morgan)
-    public async signIn(@requestBody() credentials: IAuthData) {
+    public async signIn (@requestBody() credentials: IAuthData) {
         if (this.httpContext.user && await this.httpContext.user.isAuthenticated()) {
             return this.json(errorify(EErrors.ALREADY_AUTH), 409);
         }
@@ -90,7 +90,7 @@ export class SessionController extends BaseHttpController {
      *
      */
     @httpDelete('/', TYPES.Morgan)
-    public async logout(@requestHeaders('x-auth-token') token: string) {
+    public async logout (@requestHeaders('x-auth-token') token: string) {
         if (this.httpContext.user && !await this.httpContext.user.isAuthenticated()) {
             return this.json(errorify(EErrors.UNAUTHORIZED), 401);
         }
@@ -126,7 +126,7 @@ export class SessionController extends BaseHttpController {
      *      HTTP/1.1 200 OK
      */
     @httpGet('/')
-    public async check() {
+    public async check () {
         if (this.httpContext.user && !await this.httpContext.user.isAuthenticated()) {
             return this.json(errorify(EErrors.UNAUTHORIZED), 401);
         }

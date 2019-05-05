@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "tslint \"src/**/*.ts\" --project tsconfig.json",
+    "lint-fix": "tslint \"src/**/*.ts\" --project tsconfig.json --fix",
     "dev": "npm run build-ts && TYPE=dev node ./dist/index.js",
     "mocks": "npm run build-ts && TYPE=mocks npm run watch",
     "build-ts": "tsc",

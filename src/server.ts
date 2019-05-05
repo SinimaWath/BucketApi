@@ -1,4 +1,4 @@
-import {interfaces, InversifyExpressServer} from 'inversify-express-utils';
+import {InversifyExpressServer} from 'inversify-express-utils';
 import setEnv from './env';
 import {Container} from 'inversify';
 import {IConfig} from './config/config';
@@ -7,7 +7,7 @@ import {TYPES} from './di/types';
 import './controllers/controllers';
 import {UserAuthProvider} from './services/authService/authProvider';
 
-export function build(container: Container, config: IConfig) {
+export function build (container: Container, config: IConfig) {
     const server = new InversifyExpressServer(
         container,
         null,

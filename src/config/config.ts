@@ -9,7 +9,7 @@ export interface IConfig {
     morganMode?: TMorganMode;
     privateKey?: TPrivateKeyJWT;
     jwt?: IJWTConfig;
-    passwordHashRound?: number
+    passwordHashRound?: number;
 }
 
 export interface IJWTConfig {
@@ -31,7 +31,7 @@ export enum EModes {
     MOCKS = 'mocks',
 }
 
-export default function getConfig(mode: TMode): IConfig {
+export default function getConfig (mode: TMode): IConfig {
     if (!mode) {
         console.warn('Sorry there is no type for config');
 
