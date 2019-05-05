@@ -14,3 +14,7 @@ API для IOS приложения BucketList
 
 Пока что берется только dev.
 
+### ApiDoc
+Генерация: `npm run generate-doc`
+Открыть: `localhost:<port>/apidoc`
+
