@@ -1,43 +1,41 @@
-import {IError} from '../utils/errors';
+import {resultify} from '../utils/service';
+import {createNotExistErr, IModel, TFieldError, TModelCreate} from './model';
 
-export interface IUser {
-    readonly email: string;
-    readonly password: string;
-    readonly age: number;
-    readonly country: string;
+export interface IUserData {
+    age: number;
+    country: string;
     _id?: string;
 }
 
-export interface IUserValidationError extends IError<EValidationError>{
-    errorField: TErrorField;
+export interface IUser extends IUserData, IModel<TUserValidationError> {
 }
 
-export enum EValidationError {
-    NOT_EXIST = 'It\'s required',
-}
+export type TCreateUserModel = TModelCreate<User, IUserData>;
 
-export type TErrorField = keyof IUser;
+export type TUserErrorField = TFieldError<IUserData>;
 
-function createNotExistErr(errorField: TErrorField): IUserValidationError  {
-    return {errorField, error: EValidationError.NOT_EXIST};
-}
+export type TUserValidationError = TUserErrorField | null;
 
 export class User implements IUser{
 
     constructor(
         public readonly age: number,
         public readonly country: string,
-        public readonly password: string,
-        public readonly email: string,
         public _id?: string,
-
     ) {}
 
-    public static create(user: IUser): User {
-        return new User(user.age, user.country, user.password, user.email, user._id);
+    public static async create(user: IUserData): Promise<TCreateUserModel> {
+        let created = new User(user.age, user.country, user._id);
+
+        const error = created.validate();
+        if (error !== null) {
+            return error;
+        }
+
+        return resultify(created);
     }
 
-    validate(): IUserValidationError | null {
+    validate(): TUserValidationError {
         const err = this.checkRequire();
         if (err !== null) {
             return err;
@@ -46,15 +44,7 @@ export class User implements IUser{
         return null;
     }
 
-    checkRequire(): IUserValidationError | null {
-        if (!this.email) {
-            return createNotExistErr('email')
-        }
-
-        if (!this.password) {
-            return createNotExistErr('password');
-        }
-
+    checkRequire(): TUserValidationError {
         if (!this.age) {
             return createNotExistErr('age')
         }

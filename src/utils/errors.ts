@@ -1,3 +1,3 @@
 export interface IError<T> {
-    error: T;
+    error: T | string;
 }

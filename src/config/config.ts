@@ -1,10 +1,19 @@
 import config from './config.json';
+import secretKey from './secretKey.json';
+import {TPrivateKeyJWT} from '../utils/IJWT';
 
 export interface IConfig {
     mode?: TMode;
     port?: number;
     logger?: TLogger;
     morganMode?: TMorganMode;
+    privateKey?: TPrivateKeyJWT;
+    jwt?: IJWTConfig;
+    passwordHashRound?: number
+}
+
+export interface IJWTConfig {
+    exp?: number;
 }
 
 export type TLogger = 'console';
@@ -34,6 +43,7 @@ export default function getConfig(mode: TMode): IConfig {
         case EModes.DEV:
             const configDev = config.dev as IConfig;
             configDev.mode = mode;
+            configDev.privateKey = (secretKey as any).key;
 
             return configDev;
         default:

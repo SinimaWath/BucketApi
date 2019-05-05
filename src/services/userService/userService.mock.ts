@@ -1,28 +1,18 @@
 import {injectable} from 'inversify';
-import {IUserService, TCreateUser, TGetUser} from './interfaces';
-import {IUser, User} from '../../models/user';
-import {resultify} from '../../utils/service';
-import {BaseUserService} from './userService';
+import {IUserService, TCreateUser, TGetUser, TGetUsers} from './interfaces';
+import {IUser, IUserData, TCreateUserModel, User} from '../../models/user';
+import {BaseUserService} from './userServiceBase';
+import {TCreateAuthToken} from '../authService/interfaces';
+import {AuthModel, IAuthData, TCreateAuthModel} from '../../models/auth';
 
 @injectable()
 export class MockUserService extends BaseUserService implements IUserService  {
-    async get(id: string): Promise<TGetUser> {
-        return await this._userStorage.findOneById(id);
+    create(user: IUserData & IAuthData): Promise<TCreateUser> {
+        return undefined;
     }
 
-    async create(data: IUser): Promise<TCreateUser> {
-        const user = User.create(data);
-
-        const error = user.validate();
-        if (error !== null) {
-            return error;
-        }
-
-        const insertedUser = await this._userStorage.insert(user);
-        this._logger.log(insertedUser);
-
-        const jwt = await this._authService.create({email: insertedUser.email, _id: insertedUser._id});
-
-        return resultify(jwt);
+    get(id: string): Promise<TGetUser> {
+        return undefined;
     }
+
 }

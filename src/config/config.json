@@ -2,7 +2,11 @@
   "dev": {
     "port": 3000,
     "morganMode": "tiny",
-    "logger": "console"
+    "logger": "console",
+    "jwt": {
+      "exp": 3600,
+    },
+    "passwordHashRound": 5
   },
   "default": {
     "port": 3000

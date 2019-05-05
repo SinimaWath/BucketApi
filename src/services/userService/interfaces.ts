@@ -1,15 +1,17 @@
-import {IUser, IUserValidationError, TErrorField, User} from '../../models/user';
+import {IUser, IUserData, TUserValidationError} from '../../models/user';
 import {IError} from '../../utils/errors';
 import {IJWT} from '../../utils/IJWT';
-import {IResult} from '../../utils/service';
+import {IResult, TAction} from '../../utils/service';
+import {IAuthData} from '../../models/auth';
+import {IUserFullData, TUserFullValidationError} from '../../models/userfull';
 
-export type TGetUser = Partial<IResult<IUser> & IError<string>>;
+export type TGetUser = TAction<IUserFullData, IError<string>>;
+export type TGetUsers = Partial<IResult<IUser[]> & IError<string>>
+export type TCreateUserError = Partial<TUserFullValidationError>;
 
-export type TCreateUserError = IError<string> & IUserValidationError;
-
-export type TCreateUser = Partial<IResult<IJWT> & TCreateUserError>;
+export type TCreateUser = TAction<IJWT, TCreateUserError>;
 
 export interface IUserService {
     get(id: string): Promise<TGetUser>;
-    create(user: IUser): Promise<TCreateUser>;
+    create(user: IUserData & IAuthData): Promise<TCreateUser>;
 }

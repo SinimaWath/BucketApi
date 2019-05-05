@@ -1,25 +1,14 @@
 import 'reflect-metadata';
-import getConfig, {TMode} from './config/config';
-import {Container} from 'inversify';
-import {initLogger, initServer, initServices} from './init';
-import {TYPES} from './contsants/types';
+import {AppContainer} from './di/bootstrap';
+import {TYPES} from './di/types';
+import {IConfig} from './config/config';
 import {ILogger} from './utils/ILogger';
-import {ContainerStorage} from './storages/container/container';
+import {build} from './server';
 
-let container = new Container();
-ContainerStorage.container = container;
-
-const config = getConfig(process.env.TYPE as TMode);
-initLogger(container, config);
-
-container.get<ILogger>(TYPES.Logger).log('Config:', config);
-
-initServices(container, config);
-
-const server = initServer(container, config);
+const server = build(AppContainer, AppContainer.get<IConfig>(TYPES.Config));
 
 server.listen(server.get('port'), () => {
-    const logger: ILogger = container.get(TYPES.Logger);
+    const logger: ILogger = AppContainer.get(TYPES.Logger);
     logger.log('Port: ', server.get('port'));
 });
 

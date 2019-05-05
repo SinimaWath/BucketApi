@@ -14,10 +14,13 @@ export function createError(error: string, data: any): IErrorResponse {
     return {
         data,
         error,
-    }
+    };
 }
 
 
 export enum EErrors {
     NOT_FOUND = 'User not found',
+    INTERNAL = 'Internal server error',
+    UNAUTHORIZED = 'Unauthorized',
+    ALREADY_AUTH = 'Already authorized',
 }

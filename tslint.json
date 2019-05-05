@@ -44,7 +44,8 @@
         "newline-before-return": true,
         "unnecessary-bind": true,
         "class-name": true,
-        "arrow-return-shorthand": true
+        "arrow-return-shorthand": true,
+        "semicolon": [true, "always"]
     },
     "rulesDirectory": []
 }
